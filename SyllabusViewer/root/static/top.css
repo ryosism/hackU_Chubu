@@ -4,21 +4,24 @@ h1 {
 /*フォーム全体*/
 .container {
     width: 100%;
-    border: 1px solid #000;
-    position: relative;
-    background: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* .main div   {
+.searchbox{
+      border: 1px solid #000;
+}
+
+.main div   {
     width: 80%;
     border: 1px solid #FF0000;
     margin: 0 auto;
-} */
+}
 
 #form1{
   /*position:relative;/*フォームの相対位置*/
   max-width:540px;/*フォームのサイズ*/
-  margin-bottom:15px;/*フォームの下に余白*/
 }
 /*検索ボックス*/
 #sbox{
@@ -34,6 +37,7 @@ h1 {
 }
 /*検索ボタン*/
 #sbtn{
+  padding: 0;
   width:70px;/*検索ボタンの横幅*/
   height:50px;/*検索ボタンの縦幅*/
   /* position:absolute;/*検索ボタンの絶対位置*/
