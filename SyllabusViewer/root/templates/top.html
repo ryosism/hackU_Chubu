@@ -1,46 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8">
-    <style type="text/css">
-      h1 {
-        color: red;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        }
-      html, body, .form1 {
-        width: 100vw;
-        height: 70vh;
-      }
-      .form1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: white;
-      }
-      input.txt {
-        min-width: 45vw;
-        height: 30px;
-      }
-      input.send {
-        min-width: 5vw;
-        height: 30px;
-      }
-    </style>
+    <link rel="stylesheet" href="{{url_for('static', filename='top.css')}}">
   </head>
   <body>
     <h1>SyllabusViewer</h1>
-    <div class="form1">
-      <form method="post" action="#">
-        <label>
-          <input type="text" name="keyword" class="txt">
-        </label>
-        <label>
-          <input type="submit" value="検索" class="send">
-        </label>
-      </form>
+    <div class="container">
+    <form id="form1" action="http://157.110.46.120">
+      <input id="sbox" name="s" type="text" placeholder="キーワードを入力" />
+      <input id="sbtn" type="submit" value="検索" />
+    </form>
     </div>
   </body>
 </html>
