@@ -1,5 +1,16 @@
 from flask import *  # 必要なライブラリのインポート
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+from firebase_admin import db
+
+from api import SearchApi, SearchApiRequest
+
+cred = credentials.Certificate('../secrets/syllubusviewer-firebase-adminsdk-sxbfc-d09cd169a3.json')
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
 app = Flask(__name__)  # アプリの設定
 
 
@@ -10,7 +21,9 @@ def top():
 
 @app.route("/searchResult", methods=["GET", "POST"])
 def searchResult():
-    return render_template("searchResult.html")
+    searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = "C言語応用", tags = [])
+    result = SearchApi.searchApi(db, request)
+    return render_template("searchResult.html", result = result)
 
 
 @app.route("/kougiDetail", methods=["GET", "POST"])
