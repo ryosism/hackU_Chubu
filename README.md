@@ -5,4 +5,4 @@
 
 ## Requirements
 - Flask==1.0.3
-- sqlalchemy==1.3.4
+- firebase-admin==2.17.0
