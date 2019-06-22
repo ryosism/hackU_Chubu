@@ -2,14 +2,17 @@ h1 {
   color: blue;
 }
 /*フォーム全体*/
-.container {
+.container1 {
     width: 100%;
+    height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .searchbox{
+      width: 80%;
+      height: 20%;
       border: 1px solid #000;
 }
 
@@ -21,15 +24,17 @@ h1 {
 
 #form1{
   /*position:relative;/*フォームの相対位置*/
-  max-width:540px;/*フォームのサイズ*/
+  max-width:1024px;/*フォームのサイズ*/
 }
 /*検索ボックス*/
 #sbox{
+  float: left;
+  text-align: left;
   /*position:absolute;/*フォームの絶対位置*/
   left:0;
   top:0;
-  text-align: center;/*中央ぞろえ*/
   outline:0;/*クリック時の青い枠線消す*/
+  width: 80%;
   height:50px;/*検索ボックスの高さ*/
   padding:0 10px;/*テキスト位置調整*/
   border-radius:2px 0 0 2px;/*検索ボックスの角を丸める*/
@@ -37,11 +42,11 @@ h1 {
 }
 /*検索ボタン*/
 #sbtn{
+  float: right;
   padding: 0;
-  width:70px;/*検索ボタンの横幅*/
+  width:15%;/*検索ボタンの横幅*/
   height:50px;/*検索ボタンの縦幅*/
-  /* position:absolute;/*検索ボタンの絶対位置*/
-  left:540px;/*検索ボタンの位置調整*/
+  left:1024px;/*検索ボタンの位置調整*/
   top:0;
   border-radius:0 2px 2px 0;/*検索ボタンの角を丸める*/
   background:#7fbfff;/*検索ボタンの背景カラー*/
@@ -53,4 +58,72 @@ h1 {
 /*検索ボタンマウスオーバー時*/
 #sbtn:hover{
 color:#666;/*検索ボタンマウスオーバー時のフォントカラー*/
+}
+/*チェックボタン（絞り込み）*/
+.container2 {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection{
+      width: 80%;
+      height: 60%;
+      border: 1px solid #000;
+}
+
+.msr_chack_05 {
+  padding-bottom: 20px;
+}
+.msr_chack_05 p {
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+.msr_chack_05 input[type=checkbox] {
+  display: none;
+  margin: 0;
+}
+.msr_chack_05 input[type=checkbox] + label {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.5px;
+  margin-right: 12px;
+  padding: 0 0 0 24px;
+  position: relative;
+}
+.msr_chack_05 input[type=checkbox] + label::before {
+  border: 1px solid #999999;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  content: "";
+  display: block;
+  margin-top: -9px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 16px;
+  width: 16px;
+}
+.msr_chack_05 input[type=checkbox]:checked + label::after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+}
+.msr_chack_05 input[type=checkbox]:checked + label::after {
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #333333;
+  left: 3px;
+  margin-top: -6px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  height: 6px;
+  width: 10px;
 }
