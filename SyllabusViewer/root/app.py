@@ -4,6 +4,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from firebase_admin import db
+from flask_bootstrap import Bootstrap
 
 from api import SearchApi, SearchApiRequest
 from utils.parser import *
@@ -13,6 +14,7 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 app = Flask(__name__)  # アプリの設定
+bootstrap = Bootstrap(app)
 
 
 @app.route("/", methods=["GET", "POST"])  # どのページで実行する関数か設定
@@ -24,7 +26,7 @@ def top():
 def searchResult():
     searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = "C言語応用", tags = [])
     result = parseSearchResults(SearchApi.searchApi(db, request))
-    
+
     return render_template("searchResult.html", result = result)
 
 
