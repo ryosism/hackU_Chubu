@@ -87,7 +87,6 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
   margin-bottom: 0.5rem;
 }
 
@@ -3764,7 +3763,7 @@ tbody.collapse.show {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 1.2rem 1.5rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .navbar > .container,
@@ -3784,7 +3783,7 @@ tbody.collapse.show {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-right: 1.5rem;
-  font-size: 1.5rem;
+  font-size: 2.0rem;
   line-height: inherit;
   white-space: nowrap;
 }
