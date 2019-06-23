@@ -24,10 +24,19 @@ def top():
 
 @app.route("/searchResult", methods=["GET", "POST"])
 def searchResult():
-    searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = "C言語応用", tags = [])
+    if request.method == "GET":
+        keyword = "C言語応用"
+    else:
+        try:
+            keyword = str(request.form["keyword"])
+        except Exception as e:
+            keyword = "C言語応用"
+
+    print(keyword)
+    searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, tags = [])
     result = parseSearchResults(SearchApi.searchApi(db, request))
 
-    return render_template("searchResult.html", result = result)
+    return render_template("searchResult.html", keyword = keyword, result = result)
 
 
 @app.route("/kougiDetail", methods=["GET", "POST"])
