@@ -6,8 +6,9 @@ from firebase_admin import firestore
 from firebase_admin import db
 
 from api import SearchApi, SearchApiRequest
+from utils.parser import *
 
-cred = credentials.Certificate('../secrets/syllubusviewer-firebase-adminsdk-sxbfc-d09cd169a3.json')
+cred = credentials.Certificate('../secrets/syllubusviewer-firebase-adminsdk-sxbfc-60c38042a5.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -22,7 +23,8 @@ def top():
 @app.route("/searchResult", methods=["GET", "POST"])
 def searchResult():
     searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = "C言語応用", tags = [])
-    result = SearchApi.searchApi(db, request)
+    result = parseSearchResults(SearchApi.searchApi(db, request))
+    
     return render_template("searchResult.html", result = result)
 
 
