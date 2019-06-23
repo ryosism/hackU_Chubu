@@ -4,6 +4,8 @@
     </head>
     <body>
     this is the searchResult page<br>
-    {{result[0]["text"]}}
+    {% for doc in result %}
+        <p> {{doc["title"]}}, {{doc["text"]}}, {{doc["teacher"]}}
+    {% endfor %}
     </body>
 </html>
