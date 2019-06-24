@@ -42,7 +42,10 @@ def searchResult():
 
 @app.route("/kougiDetail", methods=["GET", "POST"])
 def kougiDetial():
-    return render_template("kougiDetail.html")
+
+    doc = ""
+
+    return render_template("kougiDetail.html", doc = doc)
 
 
 if __name__ == "__main__":  # 実行されたら

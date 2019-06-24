@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Umi</title>
+  <title>syllubusViewer</title>
 
   <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
   <style type="text/css">
@@ -63,7 +63,7 @@
             <a class="nav-link" href="./">このサイトについて <span class="sr-only">(current)</span></a>
           </li>
         </ul>
-        <form action="#" class="form-inline my-2 my-lg-0" method="POST">
+        <form action="./searchResult" class="form-inline my-2 my-lg-0" method="POST">
           <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search">
           <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -77,13 +77,15 @@
         <h1 id="navbars">検索結果 : {{keyword}}</h1>
     </div>
     {% for doc in result %}
-        <form action="./kougiDetail" name="doc" method="post">
-            <input type="hidden" name="doc" value="doc">
+        <form action="/kougiDetail/{{doc['']}}" name="link">
+            <input type="hidden" name="kougi" value=doc>
         </form>
-        <a href="./kougiDetail">
+        <a href="javascript:document.link.submit()" onclick="javascript:document.link.submit()">
+
             <h2>{{doc["title"]}}</h2>
             <p class="text-muted">{{doc["text"]}}, {{doc["teacher"]}}</p>
         </a>
+
     {% endfor %}
 </div>
 
