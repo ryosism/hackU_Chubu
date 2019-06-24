@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import *  # 必要なライブラリのインポート
 
 import firebase_admin
