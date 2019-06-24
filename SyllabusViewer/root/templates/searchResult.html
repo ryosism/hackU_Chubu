@@ -77,6 +77,9 @@
         <h1 id="navbars">検索結果 : {{keyword}}</h1>
     </div>
     {% for doc in result %}
+        <form action="./kougiDetail" name="doc" method="post">
+            <input type="hidden" name="doc" value="doc">
+        </form>
         <a href="./kougiDetail">
             <h2>{{doc["title"]}}</h2>
             <p class="text-muted">{{doc["text"]}}, {{doc["teacher"]}}</p>

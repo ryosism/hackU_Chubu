@@ -25,12 +25,12 @@ def top():
 @app.route("/searchResult", methods=["GET", "POST"])
 def searchResult():
     if request.method == "GET":
-        keyword = "C言語応用"
+        keyword = ""
     else:
         try:
             keyword = str(request.form["keyword"])
         except Exception as e:
-            keyword = "C言語応用"
+            keyword = ""
 
     print(keyword)
     searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, tags = [])
