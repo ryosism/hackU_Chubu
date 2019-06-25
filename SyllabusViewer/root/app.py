@@ -33,7 +33,6 @@ def searchResult():
         except Exception as e:
             keyword = ""
 
-    print(keyword)
     searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, tags = [])
     result = parseSearchResults(SearchApi.searchApi(db, request))
 

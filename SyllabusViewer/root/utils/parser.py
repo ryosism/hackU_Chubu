@@ -1,6 +1,6 @@
 def parseSearchResults(docs):
     parsed = []
     for doc in docs:
-        parsed.append(doc.to_dict())
-        
+        parsed.append(doc)
+
     return parsed
