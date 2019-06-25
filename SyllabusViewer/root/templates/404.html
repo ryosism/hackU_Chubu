@@ -74,16 +74,11 @@
 
 <div class="container">
     <div class="page-header">
-        <h1 id="navbars">検索結果 : {{keyword}}</h1>
+        <h1 id="navbars">ERROR!</h1>
     </div>
-    {% for doc in result %}
-    
-        <a href="/kougiDetail/{{doc['id']}}" onclick="javascript:document.link.submit()">
-            <h2>{{doc["title"]}}</h2>
-            <p class="text-muted">{{doc["text"]}}, {{doc["teacher"]}}</p>
-        </a>
 
-    {% endfor %}
+        <p class="text-muted">リンク先のページは削除されたか、存在しません。</p>
+
 </div>
 
 

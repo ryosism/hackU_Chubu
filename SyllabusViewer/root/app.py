@@ -34,17 +34,19 @@ def searchResult():
             keyword = ""
 
     searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, tags = [])
-    result = parseSearchResults(SearchApi.searchApi(db, request))
+    result = parseSearchResults(SearchApi.keywordSearch(db, request))
 
     return render_template("searchResult.html", keyword = keyword, result = result)
 
 
-@app.route("/kougiDetail", methods=["GET", "POST"])
-def kougiDetial():
+@app.route("/kougiDetail/<id>", methods=["GET", "POST"])
+def kougiDetial(id):
 
-    doc = ""
+    kougi = SearchApi.idSearch(db, id)
+    if kougi["text"] == "ERROR-404":
+        return render_template("404.html")
 
-    return render_template("kougiDetail.html", doc = doc)
+    return render_template("kougiDetail.html", kougi = kougi)
 
 
 if __name__ == "__main__":  # 実行されたら
