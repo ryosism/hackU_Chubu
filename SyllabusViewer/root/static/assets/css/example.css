@@ -994,8 +994,8 @@ input[type="button"].btn-block {
   min-height: 530px;
   margin-bottom: 0;
   overflow: hidden;
-  background-color: #f9f9f9;
-  background-image: url("../img/buck_kouho2.jpg");
+  background-color: #FFFFFF;
+  background-image: url("");
   background-repeat: no-repeat;
   background-position: -35% center;
   background-size: 70%;
@@ -1007,7 +1007,7 @@ input[type="button"].btn-block {
   left: 0;
   width: 390px;
   height: 530px;
-  background-image: url("../img/umi.png");
+  background-image: url("../img/daigaku_rogo.png");
   background-repeat: no-repeat;
 }
 
