@@ -73,8 +73,27 @@
 </header>
 
 <div class="container">
-        <h2>{{kougi["title"]}}</h2>
-        <p class="text-muted">{{kougi["text"]}}, {{kougi["teacher"]}}</p>
+    <h2>{{kougi["title"]}}<small class="text-muted">{{kougi["teacher"]}}</small></h2>
+    <h3>授業の主旨</h3>
+    <p class="bs-component">{{kougi["text"]}}</p>
+
+        <div class="page-header">
+          <h2 id="containers">この講義に対するみんなの評価</h2>
+        </div>
+        <div class="bs-component">
+            <div class="jumbotron">
+
+                <!-- WRITE SOMETHING! -->
+
+                <!-- <h1 class="display-3">Hello, world!</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+                </p>
+            </div>
+        </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
