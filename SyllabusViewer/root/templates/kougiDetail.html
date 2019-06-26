@@ -76,13 +76,12 @@
 <div class="container">
     <h2>{{kougi["title"]}}
         <small class="text-muted">{{kougi["teacher"]}}</small>
+
         <div class="star-rating">
-            <div class="star-rating-front" style="width: 50%">
-                {% for _ in range(star) %}★{% endfor %}
-            </div>
+            <div class="star-rating-front" style="width: {{star}}%">★★★★★</div>
             <div class="star-rating-back">★★★★★</div>
         </div>
-        <small>みんなの評価点数 = {{star}}</small>
+        <small>みんなの評価点数 = {{star/20}}</small>
     </h2>
     <h3>授業の主旨</h3>
     <p class="bs-component">{{kougi["text"]}}</p>

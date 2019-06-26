@@ -36,7 +36,7 @@ def searchReview(db, id):
             stars.append(int(review["star"]))
             reviews.append(review)
 
-        star = math.ceil(sum(stars) / len(stars))
+        star = math.ceil(20*(sum(stars) / len(stars)))
 
     except Exception as e:
         star = 0
