@@ -1,3 +1,5 @@
+import math
+
 def keywordSearch(db, request):
     users_ref = db.collection('kougis')
     docs = users_ref.get()
@@ -24,5 +26,25 @@ def idSearch(db, id):
     return doc
 
 def searchReview(db, id):
-    ref = db.collection('kougis').where("id", "==", id)
-    doc = users_ref.get().to_dict()
+    ref = db.collection('reviews').where("kougiID", "==", id)
+    reviews = []
+    stars = []
+    try:
+        docs = ref.get()
+        for review in docs:
+            review = review.to_dict()
+            stars.append(int(review["star"]))
+            reviews.append(review)
+
+        star = math.ceil(sum(stars) / len(stars))
+
+    except Exception as e:
+        star = 0
+        review = {}
+        review["id"] = ""
+        review["star"] = 0
+        review["title"] = "まだレビューがありません"
+        review["text"] = "レビューを登録して他の人に講義を知ってもらおう！"
+        reviews.append(review)
+
+    return reviews, star

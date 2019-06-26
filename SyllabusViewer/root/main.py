@@ -45,12 +45,12 @@ def searchResult():
 @app.route("/kougiDetail/<id>", methods=["GET", "POST"])
 def kougiDetial(id):
     kougi = SearchApi.idSearch(db, id)
+    reviews, star = SearchApi.searchReview(db, id)
+
     if kougi["text"] == "ERROR-404":
         return render_template("404.html")
-
     if request.method == "GET":
-        
-        return render_template("kougiDetail.html", kougi = kougi)
+        return render_template("kougiDetail.html", kougi = kougi, reviews = reviews, star = star)
 
     else:
         kougiID = request.form["id"]
@@ -71,7 +71,7 @@ def kougiDetial(id):
         InsertReviewApi.insertReview(db, insertReviewApiRequest)
 
 
-        return render_template("kougiDetail.html", kougi = kougi)
+        return render_template("kougiDetail.html", kougi = kougi, reviews = reviews, star = star)
 
 if __name__ == "__main__":  # 実行されたら
     app.run(debug=True, host='0.0.0.0', port=8888, threaded=True)  # デバッグモード、localhost:8
