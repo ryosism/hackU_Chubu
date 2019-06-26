@@ -8811,4 +8811,43 @@ a.text-dark:hover, a.text-dark:focus {
   color: #000;
 }
 
+/* CSSの追加 レーティングの星を表示 */
+
+.star-rating {
+  position: relative;
+  width: 5em;
+  font-size: 25px;
+
+}
+.star-rating-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-back {
+  color: #ccc;
+}
+
+.evaluation{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.evaluation input[type='radio']{
+  display: none;
+}
+.evaluation label{
+  position: relative;
+  padding: 0px 5px 10px;
+  color: gray;
+  cursor: pointer;
+  font-size: 30px;
+}
+.evaluation label:hover,
+.evaluation label:hover ~ label,
+.evaluation input[type='radio']:checked ~ label{
+  color: #ffcc00;
+}
 /*# sourceMappingURL=bootstrap.css.map */

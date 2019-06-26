@@ -7,6 +7,7 @@
   <title>syllubusViewer</title>
 
   <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../static/assets/css/example.css">
   <style type="text/css">
   .bs-component + .bs-component {
     margin-top: 1rem;
@@ -63,7 +64,7 @@
             <a class="nav-link" href="/">このサイトについて <span class="sr-only">(current)</span></a>
           </li>
         </ul>
-        <form action="#" class="form-inline my-2 my-lg-0" method="POST">
+        <form action="/searchResult" class="form-inline my-2 my-lg-0" method="POST">
           <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search">
           <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -78,12 +79,15 @@
     <p class="bs-component">{{kougi["text"]}}</p>
 
         <div class="page-header">
-          <h2 id="containers">この講義に対するみんなの評価</h2>
+          <h3 id="containers">この講義に対するみんなの評価</h3>
         </div>
         <div class="bs-component">
             <div class="jumbotron">
 
                 <!-- WRITE SOMETHING! -->
+                <div class="star-rating">
+                <div class="star-rating-front" style="width: 50%">★★★★★</div>
+                <div class="star-rating-back">★★★★★</div>
 
                 <!-- <h1 class="display-3">Hello, world!</h1>
                 <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -127,6 +131,16 @@
         </p>
         </form>
 </div>
+
+<footer class="small">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center copyright">
+        &copy; 2019 Sobue&Servant
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
