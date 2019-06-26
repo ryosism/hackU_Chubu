@@ -94,6 +94,38 @@
                 </p>
             </div>
         </div>
+
+    <h3>講義の評価を登録する</h3>
+    </div>
+        <form action="#" method="POST">
+        <input type="hidden" name="id" value="{{kougi['id']}}">
+
+        5段階で評価(任意):
+            <div class="evaluation">
+              <input id="star1" type="radio" name="star" value="5" required=”true”/>
+              <label for="star1"><span class="text"></span>★</label>
+              <input id="star2" type="radio" name="star" value="4" required=”true”/>
+              <label for="star2"><span class="text"></span>★</label>
+              <input id="star3" type="radio" name="star" value="3" required=”true”/>
+              <label for="star3"><span class="text"></span>★</label>
+              <input id="star4" type="radio" name="star" value="2" required=”true”/>
+              <label for="star4"><span class="text"></span>★</label>
+              <input id="star5" type="radio" name="star" value="1" required=”true”/>
+              <label for="star5"><span class="text"></span>★</label>
+            </div>
+
+        <div class="form-group">
+            <label>評価のタイトル(任意):</label>
+            <input type="text" name="title" class="form-control" placeholder="(例) 受ける価値あり！">
+        </div>
+        <div class="form-group">
+            <label>本文(任意):</label>
+            <textarea type="text" name="text" class="form-control" rows="4" placeholder="(例) 何にしろ、先生が優しい！そして実験が楽しい！物理に詳しくなくても楽しめるよ。"></textarea>
+        </div>
+        <p class="bs-component">
+          <button type="submit" class="btn btn-success">自分の評価を登録する</button>
+        </p>
+        </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
