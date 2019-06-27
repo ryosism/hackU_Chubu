@@ -7,6 +7,7 @@
   <title>syllubusViewer</title>
 
   <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../static/assets/css/example.css">
   <style type="text/css">
   .bs-component + .bs-component {
     margin-top: 1rem;
@@ -63,7 +64,7 @@
             <a class="nav-link" href="/">このサイトについて <span class="sr-only">(current)</span></a>
           </li>
         </ul>
-        <form action="#" class="form-inline my-2 my-lg-0" method="POST">
+        <form action="/searchResult" class="form-inline my-2 my-lg-0" method="POST">
           <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search">
           <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -73,28 +74,80 @@
 </header>
 
 <div class="container">
-    <h2>{{kougi["title"]}}<small class="text-muted">{{kougi["teacher"]}}</small></h2>
+    <h2>{{kougi["title"]}}
+        <small class="text-muted">{{kougi["teacher"]}}</small>
+
+        <div class="star-rating">
+            <div class="star-rating-front" style="width: {{star}}%">★★★★★</div>
+            <div class="star-rating-back">★★★★★</div>
+        </div>
+
+        <small>みんなの評価点数 = {{star/20}}</small>
+    </h2>
     <h3>授業の主旨</h3>
     <p class="bs-component">{{kougi["text"]}}</p>
 
-        <div class="page-header">
-          <h2 id="containers">この講義に対するみんなの評価</h2>
-        </div>
-        <div class="bs-component">
-            <div class="jumbotron">
+    <div class="page-header">
+      <h3 id="containers">この講義に対するみんなの評価</h3>
 
-                <!-- WRITE SOMETHING! -->
+        {% for review in reviews %}
+        <div class="card border-primary mb-3" style="max-width: 100%;">
+            <div class="card-header">{{review["title"]}}
+                <div class="star-rating">
+                    <div class="star-rating-front">{% for _ in range(review["star"])%}★{% endfor %}</div>
+                    <div class="star-rating-back">★★★★★</div>
+                </div>
 
-                <!-- <h1 class="display-3">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
-                </p>
+            </div>
+            <div class="card-body text-primary">
+              <p class="card-text">{{review["text"]}}</p>
             </div>
         </div>
+        {% endfor %}
+
+    </div>
+
+    <h3>講義の評価を登録する</h3>
+        <form action="/kougiDetail/{{kougi['id']}}" method="POST">
+        <input type="hidden" name="id" value="{{kougi['id']}}">
+
+        5段階で評価(任意):
+            <div class="evaluation">
+              <input id="star1" type="radio" name="star" value="5" required=”true”/>
+              <label for="star1"><span class="text"></span>★</label>
+              <input id="star2" type="radio" name="star" value="4" required=”true”/>
+              <label for="star2"><span class="text"></span>★</label>
+              <input id="star3" type="radio" name="star" value="3" required=”true”/>
+              <label for="star3"><span class="text"></span>★</label>
+              <input id="star4" type="radio" name="star" value="2" required=”true”/>
+              <label for="star4"><span class="text"></span>★</label>
+              <input id="star5" type="radio" name="star" value="1" required=”true”/>
+              <label for="star5"><span class="text"></span>★</label>
+            </div>
+
+        <div class="form-group">
+            <label>評価のタイトル(任意):</label>
+            <input type="text" name="title" class="form-control" placeholder="(例) 受ける価値あり！">
+        </div>
+        <div class="form-group">
+            <label>本文(任意):</label>
+            <textarea type="text" name="text" class="form-control" rows="4" placeholder="(例) 何にしろ、先生が優しい！そして実験が楽しい！物理に詳しくなくても楽しめるよ。"></textarea>
+        </div>
+        <p class="bs-component">
+          <button type="submit" class="btn btn-success">自分の評価を登録する</button>
+        </p>
+        </form>
 </div>
+
+<footer class="small">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center copyright">
+        &copy; 2019 Sobue&Servant
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

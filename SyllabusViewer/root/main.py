@@ -7,7 +7,7 @@ from firebase_admin import firestore
 from firebase_admin import db
 from flask_bootstrap import Bootstrap
 
-from api import SearchApi, SearchApiRequest
+from api import SearchApi, SearchApiRequest, InsertReviewApi, InsertReviewApiRequest
 from utils.parser import *
 
 # cred = credentials.Certificate('../secrets/syllubusviewer-firebase-adminsdk-sxbfc-60c38042a5.json')
@@ -44,13 +44,36 @@ def searchResult():
 
 @app.route("/kougiDetail/<id>", methods=["GET", "POST"])
 def kougiDetial(id):
-
     kougi = SearchApi.idSearch(db, id)
+
     if kougi["text"] == "ERROR-404":
         return render_template("404.html")
+    if request.method == "GET":
+        reviews, star = SearchApi.searchReview(db, id)
 
-    return render_template("kougiDetail.html", kougi = kougi)
+        return render_template("kougiDetail.html", kougi = kougi, reviews = reviews, star = int(star))
 
+    else:
+        kougiID = request.form["id"]
+        try:
+            star = request.form["star"]
+        except Exception as e:
+            star = 3
+        try:
+            title = request.form["title"]
+        except Exception as e:
+            title = "無題"
+        try:
+            text = request.form["text"]
+        except Exception as e:
+            text = ""
+
+        insertReviewApiRequest = InsertReviewApiRequest.InsertReviewApiRequest(kougiID = kougiID, star = star, title = title, text = text)
+        InsertReviewApi.insertReview(db, insertReviewApiRequest)
+
+        reviews, star = SearchApi.searchReview(db, id)
+
+        return redirect('/kougiDetail/{}'.format(id), code=303)
 
 if __name__ == "__main__":  # 実行されたら
     app.run(debug=True, host='0.0.0.0', port=8888, threaded=True)  # デバッグモード、localhost:8
