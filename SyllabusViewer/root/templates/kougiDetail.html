@@ -81,6 +81,7 @@
             <div class="star-rating-front" style="width: {{star}}%">★★★★★</div>
             <div class="star-rating-back">★★★★★</div>
         </div>
+
         <small>みんなの評価点数 = {{star/20}}</small>
     </h2>
     <h3>授業の主旨</h3>
@@ -91,7 +92,13 @@
 
         {% for review in reviews %}
         <div class="card border-primary mb-3" style="max-width: 100%;">
-            <div class="mb-1 card-header">{{review["title"]}}</div>
+            <div class="card-header">{{review["title"]}}
+                <div class="star-rating">
+                    <div class="star-rating-front">{% for _ in range(review["star"])%}★{% endfor %}</div>
+                    <div class="star-rating-back">★★★★★</div>
+                </div>
+
+            </div>
             <div class="card-body text-primary">
               <p class="card-text">{{review["text"]}}</p>
             </div>
