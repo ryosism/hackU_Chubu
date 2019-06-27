@@ -73,7 +73,7 @@ def kougiDetial(id):
 
         reviews, star = SearchApi.searchReview(db, id)
 
-        return render_template("kougiDetail.html", kougi = kougi, reviews = reviews, star = int(star))
+        return redirect('/kougiDetail/{}'.format(id), code=303)
 
 if __name__ == "__main__":  # 実行されたら
     app.run(debug=True, host='0.0.0.0', port=8888, threaded=True)  # デバッグモード、localhost:8
