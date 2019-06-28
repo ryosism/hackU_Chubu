@@ -84,6 +84,24 @@
 
         <small>みんなの評価点数 = {{star/20}}</small>
     </h2>
+
+    <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">開講学期</th>
+                <th scope="col">時間割</th>
+                <th scope="col">対象学科</th>
+                <th scope="col">開講学年</th>
+              </tr>
+            </thead>
+            <tbody>
+                <td>{{kougi["semester"]}}</td>
+                <td>{{kougi["zikan"]}}</td>
+                <td>{{kougi["taisyo"]}}</td>
+                <td>{{kougi["gakunen"]}}</td>
+            </tbody>
+    </table>
+
     <h3>授業の主旨</h3>
     <p class="bs-component">{{kougi["text"]}}</p>
 
