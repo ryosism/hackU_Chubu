@@ -26,6 +26,11 @@ def top():
     return render_template("top.html")
 
 
+@app.route("/about", methods=["GET", "POST"])  # どのページで実行する関数か設定
+def about():
+    return render_template("about.html")
+
+
 @app.route("/searchResult", methods=["GET", "POST"])
 def searchResult():
     if request.method == "GET":
