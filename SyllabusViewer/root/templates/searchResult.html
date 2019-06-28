@@ -76,6 +76,7 @@
     <div class="page-header">
         <h1 id="navbars">検索結果 : {{keyword}}</h1>
     </div>
+    {{result|length}}件の検索結果を表示中
     {% for doc in result %}
 
         <a href="/kougiDetail/{{doc['id']}}" onclick="javascript:document.link.submit()">
