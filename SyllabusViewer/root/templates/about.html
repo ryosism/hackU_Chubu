@@ -60,7 +60,7 @@
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="./">このサイトについて <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="./about">このサイトについて <span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <form action="./searchResult" class="form-inline my-2 my-lg-0" method="POST">
@@ -73,18 +73,18 @@
 </header>
 
 <div class="container">
-    <div class="page-header">
-        <h1 id="navbars">検索結果 : {{keyword}}</h1>
+
+    <div class="text-center my-3">
+            <h3><img src="../static/assets/img/logo.png" alt="syllubusViewer" class="img-fluid package-system-logo"></h3>
     </div>
-    {{result|length}}件の検索結果を表示中
-    {% for doc in result %}
 
-        <a href="/kougiDetail/{{doc['id']}}" onclick="javascript:document.link.submit()">
-            <h2>{{doc["title"]}}</h2>
-            <p class="text-muted">{{doc["text"]}}</p>
-        </a>
+    <div class="bs-component">
+          <div class="jumbotron">
+            <h1>SyllubusViewerとは？</h1>
+            <p class="lead">SyllabusViewerは簡単な授業が検索できるWEBアプリです．SyllabusViewerを使えば楽に授業を検索できます！先生が優しい授業などを絞り込む，匿名で授業の口コミを書くといった事も可能．皆さんも楽に授業検索しませんか？</p>
+          </div>
+        </div>
 
-    {% endfor %}
 </div>
 
 
