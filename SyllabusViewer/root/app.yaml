@@ -9,3 +9,6 @@ readiness_check:
 handlers:
 - url: /.*
   script: auto
+
+includes:
+- secret.yaml
