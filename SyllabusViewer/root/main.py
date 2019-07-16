@@ -41,7 +41,7 @@ def searchResult():
         except Exception as e:
             keyword = ""
 
-    searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, tags = [])
+    searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, count = 10, tags = [])
     result = parseSearchResults(SearchApi.keywordSearch(db, request))
 
     return render_template("searchResult.html", keyword = keyword, result = result)
