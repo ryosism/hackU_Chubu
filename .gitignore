@@ -4,3 +4,4 @@
 **/admin
 **/lib
 secret.yaml
+algoliaSecret.py
