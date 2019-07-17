@@ -17,7 +17,7 @@ baseURL = "https://tora-net.sti.chubu.ac.jp/syllabusv3/slbssbdr.do?value(risyune
 
 numberOfBatch = 0
 
-for idx in range(29968, 100000, 1):
+for idx in range(11000, 100000, 1):
     kougicd = str(idx).zfill(5)
     print("will search kougicd = {}".format(kougicd))
     URL = baseURL.format(kougicd)
