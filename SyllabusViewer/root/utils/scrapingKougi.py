@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import time
 
 import firebase_admin
 from firebase_admin import credentials
@@ -18,6 +19,7 @@ baseURL = "https://tora-net.sti.chubu.ac.jp/syllabusv3/slbssbdr.do?value(risyune
 numberOfBatch = 0
 
 for idx in range(11000, 100000, 1):
+    time.sleep(3)
     kougicd = str(idx).zfill(5)
     print("will search kougicd = {}".format(kougicd))
     URL = baseURL.format(kougicd)
