@@ -9,6 +9,7 @@
 - Flask-Bootstrap4==4.0.2
 - gunicorn==19.9.0
 - google-cloud-firestore==1.2.0
+- algoliasearch>=2.0,<3.0
 
 These requirements are included in `requirements.txt`
 
