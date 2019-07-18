@@ -79,7 +79,7 @@
     {{result|length}}件の検索結果を表示中
     {% for doc in result %}
 
-        <a href="/kougiDetail/{{doc['id']}}" onclick="javascript:document.link.submit()">
+        <a href="/kougiDetail/{{doc['objectID']}}" onclick="javascript:document.link.submit()">
             <h2>{{doc["title"]}}</h2>
             <p class="text-muted">{{doc["text"]}}</p>
         </a>

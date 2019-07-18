@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from flask import *  # 必要なライブラリのインポート
 
 import firebase_admin
@@ -9,8 +10,12 @@ from flask_bootstrap import Bootstrap
 
 from api import SearchApi, SearchApiRequest, InsertReviewApi, InsertReviewApiRequest
 from utils.parser import *
+from algoliasearch.search_client import SearchClient
 
-# cred = credentials.Certificate('../secrets/syllubusviewer-firebase-adminsdk-sxbfc-60c38042a5.json')
+client = SearchClient.create(os.environ["ALGOLIA_APP_ID"], os.environ["ALGOLIA_API_KEY"])
+kougiIndex = client.init_index('SyllabusViewer_kougis')
+reviewIndex = client.init_index('SyllabusViewer_reviews')
+
 cred = credentials.ApplicationDefault()
 firebase_admin.initialize_app(cred, {
   'projectId': 'syllubusviewer',
@@ -42,9 +47,9 @@ def searchResult():
             keyword = ""
 
     searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, count = 10, tags = [])
-    result = parseSearchResults(SearchApi.keywordSearch(db, request))
+    result, resultInfo = parseSearchResults(SearchApi.keywordSearch(kougiIndex, request))
 
-    return render_template("searchResult.html", keyword = keyword, result = result)
+    return render_template("searchResult.html", keyword = keyword, result = result, resultInfo = resultInfo)
 
 
 @app.route("/kougiDetail/<id>", methods=["GET", "POST"])

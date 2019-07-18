@@ -1,29 +1,18 @@
 import math
 
-def keywordSearch(db, request):
+def keywordSearch(kougiIndex, request):
     keyword = request.form["keyword"]
 
-    # 前方後方探索ならこっちをコメントイン
-    # users_ref = db.collection('kougis').order_by("title").start_at([keyword]).start_at(['\uf8ff' + keyword]).end_at([keyword + '\uf8ff'])
-    # docs = users_ref.get()
-    # result = []
-    # for doc in docs:
-    #     id = doc.id
-    #     doc = doc.to_dict()
-    #     doc["id"] = id
-    #     result.append(doc)
+    JSON = kougiIndex.search(keyword, {
+        'hitsPerPage': 20,
+        'page': 0
+    })
+    docs = JSON['hits']
+    nbHits = JSON['nbHits']
+    nbPages = JSON['nbPages']
+    resultInfo = {"docs": docs, "nbHits": nbHits, "nbPages": nbPages}
 
-    users_ref = db.collection('kougis')
-    docs = users_ref.get()
-    result = []
-    for doc in docs:
-        id = doc.id
-        doc = doc.to_dict()
-        doc["id"] = id
-        if request.form["keyword"] in doc["title"]:
-            result.append(doc)
-
-    return result
+    return docs, resultInfo
 
 def idSearch(db, id):
     users_ref = db.collection('kougis').document(id)
