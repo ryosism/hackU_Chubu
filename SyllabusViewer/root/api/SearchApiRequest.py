@@ -1,5 +1,5 @@
 class SearchApiRequest:
-    def __init__(self, keyword, count, tags):
+    def __init__(self, keyword, tags, page):
         self.keyword = keyword
-        self.count = count
         self.tags = tags
+        self.page = page

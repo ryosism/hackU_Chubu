@@ -46,8 +46,13 @@ def searchResult():
         except Exception as e:
             keyword = ""
 
-    searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, count = 10, tags = [])
-    result, resultInfo = parseSearchResults(SearchApi.keywordSearch(kougiIndex, request))
+        try:
+            page = str(request.form["page"])
+        except Exception as e:
+            page = 0
+
+    searchApiRequest = SearchApiRequest.SearchApiRequest(keyword = keyword, tags = [], page = page)
+    result, resultInfo = parseSearchResults(SearchApi.keywordSearch(kougiIndex, searchApiRequest))
 
     return render_template("searchResult.html", keyword = keyword, result = result, resultInfo = resultInfo)
 

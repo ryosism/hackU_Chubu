@@ -76,7 +76,30 @@
     <div class="page-header">
         <h1 id="navbars">検索結果 : {{keyword}}</h1>
     </div>
-    {{result|length}}件の検索結果を表示中
+    {{resultInfo['hitsPerPage'] * resultInfo['page'] + 1}} ~ {{resultInfo['hitsPerPage'] * (resultInfo['page'] + 1) if resultInfo['page']+1 != resultInfo['nbPages'] else resultInfo['nbHits']}}番目の検索結果を表示中 (全{{resultInfo['nbHits']}}件中)
+
+    <ul class="pagination">
+        <li class="page-item disabled">
+            <a class="page-link" href="#">&laquo;</a>
+        </li>
+
+        {% for page in range(0, resultInfo['nbPages'] -1) %}
+
+            <form action="./searchResult" method="POST">
+            <input type="hidden" name="page" value={{page + 1}}>
+            <input type="hidden" name="keyword" value={{keyword}}>
+                <li class="page-item">
+                    <button type="submit" class="page-link">{{page + 1}}</button>
+                </li>
+            </form>
+
+        {% endfor %}
+
+      <li class="page-item">
+        <a class="page-link" href="#">&raquo;</a>
+      </li>
+    </ul>
+
     {% for doc in result %}
 
         <a href="/kougiDetail/{{doc['objectID']}}" onclick="javascript:document.link.submit()">

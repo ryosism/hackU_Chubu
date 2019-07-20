@@ -1,16 +1,20 @@
 import math
 
 def keywordSearch(kougiIndex, request):
-    keyword = request.form["keyword"]
+    keyword = request.keyword
+    page = request.page
 
     JSON = kougiIndex.search(keyword, {
         'hitsPerPage': 20,
-        'page': 0
+        'page': page
     })
     docs = JSON['hits']
+
+    page = JSON["page"]
     nbHits = JSON['nbHits']
     nbPages = JSON['nbPages']
-    resultInfo = {"docs": docs, "nbHits": nbHits, "nbPages": nbPages}
+    hitsPerPage = JSON['hitsPerPage']
+    resultInfo = {"page": page, "nbHits": nbHits, "nbPages": nbPages, "hitsPerPage": hitsPerPage}
 
     return docs, resultInfo
 
