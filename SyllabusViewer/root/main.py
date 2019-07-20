@@ -14,6 +14,9 @@ from algoliasearch.search_client import SearchClient
 
 client = SearchClient.create(os.environ["ALGOLIA_APP_ID"], os.environ["ALGOLIA_API_KEY"])
 kougiIndex = client.init_index('SyllabusViewer_kougis')
+kougiIndex.set_settings({
+    'paginationLimitedTo': 10000
+})
 reviewIndex = client.init_index('SyllabusViewer_reviews')
 
 cred = credentials.ApplicationDefault()
