@@ -4541,6 +4541,17 @@ tbody.collapse.show {
   border-color: transparent;
 }
 
+.page-item.triple-reader .page-link {
+    padding: 0.75rem 0rem;
+    margin-left: 0px;
+    line-height: 0.75;
+  color: #000000;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #ffffff;
+  border-color: transparent;
+}
+
 .pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
