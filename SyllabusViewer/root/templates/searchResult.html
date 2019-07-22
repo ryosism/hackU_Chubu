@@ -89,31 +89,68 @@
             </form>
         </li>
 
+        <li class="page-item active">
+            <form action="./searchResult" method="POST">
+            {% if resultInfo['page'] == 0 %}
+                <input type="hidden" name="page" value={{resultInfo['page']}}>
+            {% else %}
+                <input type="hidden" name="page" value={{resultInfo['page']-1}}>
+            {% endif %}
+            <input type="hidden" name="keyword" value={{keyword}}>
+
+                <button type="submit" class="page-link">&lsaquo;</button>
+
+            </form>
+        </li>
+
         {% for page in range(0, resultInfo['nbPages']) %}
 
-            <form action="./searchResult" method="POST">
-            <input type="hidden" name="page" value={{page}}>
-            <input type="hidden" name="keyword" value={{keyword}}>
-                {% if page == resultInfo['page']%}
-                    <li class="page-item disabled">
-                {% else %}
-                    <li class="page-item">
-                {% endif %}
-                    <button type="submit" class="page-link">{{page+1}}</button>
+            {% if ((page +1 < resultInfo['page']) or (page -2 > resultInfo['page'])) and (page != 0) and (page != resultInfo['nbPages']-1) %}
+                {% if (page == 1) or (page == resultInfo['nbPages']-2) %}
+                <li class="page-item triple-reader">
+                    <a class="page-link">
+                    ･･･
+                    </a>
                 </li>
-            </form>
-
+                {% endif %}
+            {% else %}
+                <form action="./searchResult" method="POST">
+                <input type="hidden" name="page" value={{page}}>
+                <input type="hidden" name="keyword" value={{keyword}}>
+                    {% if page == resultInfo['page']%}
+                        <li class="page-item disabled">
+                    {% else %}
+                        <li class="page-item">
+                    {% endif %}
+                        <button type="submit" class="page-link">{{page+1}}</button>
+                    </li>
+                </form>
+            {% endif %}
         {% endfor %}
 
-      <li class="page-item active">
-        <form action="./searchResult" method="POST">
-        <input type="hidden" name="page" value={{resultInfo['nbPages']-1}}>
-        <input type="hidden" name="keyword" value={{keyword}}>
+        <li class="page-item active">
+            <form action="./searchResult" method="POST">
+            {% if resultInfo['page']+1 == resultInfo['nbPages'] %}
+                <input type="hidden" name="page" value={{resultInfo['nbPages']-1}}>
+            {% else %}
+                <input type="hidden" name="page" value={{resultInfo['page']+1}}>
+            {% endif %}
+            <input type="hidden" name="keyword" value={{keyword}}>
 
-            <button type="submit" class="page-link">&raquo;</button>
+                <button type="submit" class="page-link">&rsaquo;</button>
 
-        </form>
-      </li>
+            </form>
+        </li>
+
+        <li class="page-item active">
+            <form action="./searchResult" method="POST">
+            <input type="hidden" name="page" value={{resultInfo['nbPages']-1}}>
+            <input type="hidden" name="keyword" value={{keyword}}>
+
+                <button type="submit" class="page-link">&raquo;</button>
+
+            </form>
+        </li>
     </ul>
 
     {% for doc in result %}
