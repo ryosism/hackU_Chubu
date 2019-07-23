@@ -14,7 +14,7 @@
 These requirements are included in `requirements.txt`
 
 - `npm install algoliasearch --save`
-- `npm install firebase --save`
+- `npm install firebase --save`  
 をfunctionの中で実行
 
 ## installation
