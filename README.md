@@ -2,6 +2,7 @@
 
 # Syllabus Viewer
 中部大学のシラバスを超軽量で閲覧でき、匿名のレビューもつけられるビューワー
+http://syllabusviewer.info/ 
 
 ## Requirements
 - Flask==1.0.3
