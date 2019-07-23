@@ -78,7 +78,8 @@
     </div>
     {{resultInfo['hitsPerPage'] * resultInfo['page'] + 1}} ~ {{resultInfo['hitsPerPage'] * (resultInfo['page'] + 1) if resultInfo['page']+1 != resultInfo['nbPages'] else resultInfo['nbHits']}}番目の検索結果を表示中 (全{{resultInfo['nbHits']}}件中)
 
-    <ul class="pagination">
+    <ul class="pagination d-none d-lg-flex">
+
         <li class="page-item active">
             <form action="./searchResult" method="POST">
             <input type="hidden" name="page" value=0>
@@ -105,13 +106,30 @@
 
         {% for page in range(0, resultInfo['nbPages']) %}
 
-            {% if ((page +1 < resultInfo['page']) or (page -2 > resultInfo['page'])) and (page != 0) and (page != resultInfo['nbPages']-1) %}
+            <!-- 閲覧ページ番号より5つ前と8つ後の範囲外で、かつ、１ページ目と最終ページ目でないなら -->
+            {% if ((page +5 < resultInfo['page']) or (page -8 > resultInfo['page'])) and (page != 0) and (page != resultInfo['nbPages']-1) %}
+
+                <!-- 2ページ目と最終−1ページ目なら -->
                 {% if (page == 1) or (page == resultInfo['nbPages']-2) %}
-                <li class="page-item triple-reader">
-                    <a class="page-link">
-                    ･･･
-                    </a>
-                </li>
+                    <li class="page-item triple-reader">
+                        <a class="page-link">
+                        ･･･
+                        </a>
+                    </li>
+
+                <!-- それ以外で、もしも表示数が少ないなら省略の閾値を緩める -->
+                {% elif False %}
+                    <form action="./searchResult" method="POST">
+                    <input type="hidden" name="page" value={{page}}>
+                    <input type="hidden" name="keyword" value={{keyword}}>
+                        {% if page == resultInfo['page']%}
+                            <li class="page-item disabled">
+                        {% else %}
+                            <li class="page-item">
+                        {% endif %}
+                            <button type="submit" class="page-link">{{page+1}}</button>
+                        </li>
+                    </form>
                 {% endif %}
             {% else %}
                 <form action="./searchResult" method="POST">
@@ -152,6 +170,44 @@
             </form>
         </li>
     </ul>
+
+    <!-- ld未満の画面サイズレイアウト -->
+    <ul class="pagination d-lg-none" style="justify-content: space-between; margin-bottom: -1.0rem; padding-bottom: 1rem;">
+
+        <li class="page-item active">
+            <form action="./searchResult" method="POST">
+                {% if resultInfo['page'] == 0 %}
+                    <input type="hidden" name="page" value={{resultInfo['page']}}>
+                {% else %}
+                    <input type="hidden" name="page" value={{resultInfo['page']-1}}>
+                {% endif %}
+                <input type="hidden" name="keyword" value={{keyword}}>
+
+                <button type="submit" class="page-link">< 前へ</button>
+
+            </form>
+        </li>
+
+        <li class="page-item disabled">
+            {{resultInfo['page']+1}}ページ目
+        </li>
+
+        <li class="page-item active">
+            <form action="./searchResult" method="POST">
+                {% if resultInfo['page']+1 == resultInfo['nbPages'] %}
+                    <input type="hidden" name="page" value={{resultInfo['nbPages']-1}}>
+                {% else %}
+                    <input type="hidden" name="page" value={{resultInfo['page']+1}}>
+                {% endif %}
+            <input type="hidden" name="keyword" value={{keyword}}>
+
+                <button type="submit" class="page-link" style="margin-left: -1;">次へ ></button>
+
+            </form>
+        </li>
+    </ul>
+
+    <hr style="margin-bottom: -1rem;">
 
     {% for doc in result %}
 
