@@ -22,6 +22,6 @@ These requirements are included in `requirements.txt`
 - Launch `python main.py`
 
 - Note: Googleのサービスアカウントの.jsonファイルが求められるので、  
-パスを指定してあげる `export GOOGLE_APPLICATION_CREDENTIALS=PATH_TO_JSON` と動くよ
+パスを指定してあげる `export GOOGLE_APPLICATION_CREDENTIALS=PATH_TO_JSON` と動くよ  
 あと、firebase cloudfunctionでalgoliaを使っているから、`firebase functions:config:set algolia.app_id=`
 などしてあげる必要あり
