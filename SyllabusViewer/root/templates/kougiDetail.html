@@ -75,7 +75,14 @@
 
 <div class="container">
     <h2>{{kougi["title"]}}
-        <small class="text-muted">{{kougi["teacher"]}}</small>
+        <small class="text-muted">
+            {{kougi["teacher"][0]}}
+            {% if kougi["teacher"]|length > 1 %}
+                {% for name in kougi["teacher"] %}
+                     / {{name}}
+                {% endfor %}
+            {% endif %}
+        </small>
 
         <div class="star-rating">
             <div class="star-rating-front" style="width: {{star}}%">★★★★★</div>
