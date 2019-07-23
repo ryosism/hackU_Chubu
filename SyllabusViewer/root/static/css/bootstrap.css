@@ -4490,7 +4490,7 @@ tbody.collapse.show {
 .page-link {
   position: relative;
   display: block;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.7rem;
   margin-left: -1px;
   line-height: 1.25;
   color: #fff;
@@ -4513,6 +4513,12 @@ tbody.collapse.show {
 
 .page-link:not(:disabled):not(.disabled) {
   cursor: pointer;
+}
+
+.page-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .page-item:first-child .page-link {
